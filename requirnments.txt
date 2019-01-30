@@ -2,4 +2,5 @@
 
 flask
 Flask-Session
-
+Flask-Mail
+flask-WTF
