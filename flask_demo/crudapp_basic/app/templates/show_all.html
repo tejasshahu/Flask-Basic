@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show All</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="/static/js/sijax/sijax.js"></script>-->
+    <!--<script type="text/javascript">-->
+        <!--{{ g.sijax.get_js()|safe }}-->
+    <!--</script>-->
+    <!--<script>-->
+        <!--function onDelete() {-->
+            <!--debugger;-->
+            <!--if (confirm("Are you sure want to delete?")) {-->
+                <!--console.log("if")-->
+                <!--Sijax.request('delete_student');-->
+            <!--} else {-->
+                <!--console.log("else")-->
+            <!--}-->
+        <!--}-->
+    <!--</script>-->
+</head>
+<body>
+    <h3>
+        <a href = "{{ url_for('home_page') }}">Click to go Homepage</a>
+    </h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>Pin</th>
+                <th>Delete</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.city }}</td>
+                    <td>{{ student.addr }}</td>
+                    <td>{{ student.pin }}</td>
+                    <td>
+                        <form method="POST" action="./delete">
+                            <input type="hidden" value="{{ student.id }}" name="id">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
+                    <td>
+                        <form method="POST" action="./edit">
+                            <input type="hidden" value="{{ student.id }}" name="id">
+                            <input type="submit" value="Edit">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
